@@ -1,0 +1,1149 @@
+<title>尼罗河神话地图</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600&family=Noto+Serif+SC:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* ---------- design tokens ----------
+   Layout: 一条尼罗河做纵轴，神庙按纬度挂在河上；
+   左侧示意图常驻，右侧是天神庙宇的图录。
+   Palette: 石灰岩纸面 + 埃及彩陶釉青 + 赭金。
+*/
+:root{
+  --bg:#E9EAE1;
+  --bg-deep:#DEE0D3;
+  --surface:#F4F4EC;
+  --surface-2:#E3E5D8;
+  --ink:#141A17;
+  --ink-soft:#39433C;
+  --muted:#6B736A;
+  --line:rgba(20,26,23,.13);
+  --line-strong:rgba(20,26,23,.26);
+  --accent:#0E7A70;
+  --accent-ink:#0A5C55;
+  --accent-wash:rgba(14,122,112,.09);
+  --gold:#A2761F;
+  --gold-wash:rgba(162,118,31,.14);
+  --river:#1F7378;
+  --shadow:0 1px 2px rgba(20,26,23,.05), 0 18px 40px -26px rgba(20,26,23,.45);
+  --font-display:"Bodoni Moda","Noto Serif SC","Songti SC",serif;
+  --font-body:"Newsreader","Noto Serif SC","Songti SC",Georgia,serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A1312;
+    --bg-deep:#060E0D;
+    --surface:#111D1B;
+    --surface-2:#172522;
+    --ink:#EAE8DB;
+    --ink-soft:#C6C9BB;
+    --muted:#8A968E;
+    --line:rgba(234,232,219,.14);
+    --line-strong:rgba(234,232,219,.3);
+    --accent:#54C8B8;
+    --accent-ink:#8FE4D6;
+    --accent-wash:rgba(84,200,184,.11);
+    --gold:#D8A64C;
+    --gold-wash:rgba(216,166,76,.13);
+    --river:#54B4AE;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 18px 40px -26px rgba(0,0,0,.9);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A1312;
+  --bg-deep:#060E0D;
+  --surface:#111D1B;
+  --surface-2:#172522;
+  --ink:#EAE8DB;
+  --ink-soft:#C6C9BB;
+  --muted:#8A968E;
+  --line:rgba(234,232,219,.14);
+  --line-strong:rgba(234,232,219,.3);
+  --accent:#54C8B8;
+  --accent-ink:#8FE4D6;
+  --accent-wash:rgba(84,200,184,.11);
+  --gold:#D8A64C;
+  --gold-wash:rgba(216,166,76,.13);
+  --river:#54B4AE;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 18px 40px -26px rgba(0,0,0,.9);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:
+    radial-gradient(120% 60% at 50% 0%, var(--bg) 0%, var(--bg) 55%, var(--bg-deep) 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.75;
+  font-weight:400;
+  padding-left:max(18px, env(safe-area-inset-left, 0px));
+  padding-right:max(18px, env(safe-area-inset-right, 0px));
+  padding-block:0;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%}
+a{color:var(--accent-ink); text-decoration-thickness:1px; text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+.wrap{max-width:1180px; margin:0 auto}
+.mono{font-family:var(--font-mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:500}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- top bar ---------- */
+.bar{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:30;
+  display:flex; align-items:center; gap:18px;
+  padding-block:12px;
+  border-bottom:1px solid var(--line);
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(14px) saturate(1.2);
+  -webkit-backdrop-filter:blur(14px) saturate(1.2);
+}
+body::before{
+  content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px);
+  z-index:31; background:var(--bg);
+}
+.bar .brand{display:flex; align-items:baseline; gap:10px; margin-right:auto; min-width:0}
+.brand-mark{
+  width:22px;height:22px;flex:none;align-self:center;
+  border-radius:50%; border:1.5px solid var(--accent); position:relative;
+}
+.brand-mark::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--gold)}
+.brand-name{font-family:var(--font-display); font-size:16px; letter-spacing:.02em; font-weight:600; white-space:nowrap}
+.brand-sub{color:var(--muted); font-size:10px; letter-spacing:.2em}
+.topnav{display:flex; gap:16px; flex:none; align-items:center}
+.topnav a{
+  font-family:var(--font-mono); font-size:10.5px; letter-spacing:.1em; color:var(--ink-soft);
+  text-decoration:none; padding:4px 2px; border-bottom:1px solid transparent;
+}
+.topnav a:hover{color:var(--accent-ink); border-bottom-color:var(--accent)}
+@media (max-width:720px){ .topnav{display:none} }
+.progress{display:flex; align-items:center; gap:10px; flex:none}
+.progress-num{font-family:var(--font-mono); font-size:12px; letter-spacing:.06em; color:var(--ink-soft); font-variant-numeric:tabular-nums}
+.progress-num b{color:var(--gold); font-weight:500}
+.progress-track{width:74px; height:3px; background:var(--line-strong); border-radius:99px; overflow:hidden}
+.progress-fill{height:100%; width:0%; background:var(--gold); border-radius:99px; transition:width .45s ease}
+
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(40px,7vw,76px) clamp(28px,4vw,44px)}
+.hero-eyebrow{color:var(--accent-ink); display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+.hero-eyebrow .dot{width:4px;height:4px;border-radius:50%;background:var(--line-strong)}
+.hero h1{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(38px,7.6vw,80px);
+  line-height:1.02;
+  letter-spacing:-.015em;
+  margin:22px 0 0;
+  text-wrap:balance;
+}
+.hero h1 em{font-style:normal; font-weight:400; color:var(--accent-ink); position:relative; display:inline-block}
+.hero h1 em::after{content:""; position:absolute; left:2px; right:2px; bottom:.1em; height:2px; background:var(--gold); opacity:.55}
+.hero-lede{
+  margin:22px 0 0; max-width:40ch; font-size:clamp(17px,2.1vw,19.5px);
+  color:var(--ink-soft); line-height:1.8;
+}
+.hero-lede b{font-weight:500; color:var(--ink); box-shadow:inset 0 -8px 0 var(--gold-wash)}
+.stats{
+  display:flex; flex-wrap:wrap; gap:0; margin-top:clamp(28px,4vw,42px);
+  border-top:1px solid var(--line);
+}
+.stat{padding:16px 26px 0 0; margin-right:26px; border-right:1px solid var(--line); flex:1 1 auto; min-width:0}
+.stat:last-child{border-right:0; margin-right:0}
+.stat .k{font-family:var(--font-mono); font-size:22px; letter-spacing:.01em; color:var(--ink); font-variant-numeric:tabular-nums}
+.stat .k small{font-size:11px; color:var(--muted); letter-spacing:.1em; margin-left:4px}
+.stat .v{display:block; font-size:12px; color:var(--muted); letter-spacing:.06em; margin-top:2px}
+
+/* ---------- section shell ---------- */
+section{padding-block:clamp(34px,5vw,56px)}
+.sec-head{display:flex; align-items:flex-end; gap:18px; flex-wrap:wrap; border-top:1px solid var(--line-strong); padding-top:18px; margin-bottom:26px}
+.sec-head .idx{font-family:var(--font-mono); font-size:11px; letter-spacing:.18em; color:var(--accent-ink); padding-bottom:10px}
+.sec-head h2{
+  font-family:var(--font-display); font-weight:600; margin:0; font-size:clamp(24px,3.6vw,36px);
+  line-height:1.15; letter-spacing:-.01em; flex:1 1 260px; min-width:0; text-wrap:balance;
+}
+.sec-head p{margin:0; color:var(--muted); font-size:14px; max-width:42ch; padding-bottom:6px; line-height:1.6}
+
+/* ---------- atlas ---------- */
+.atlas-grid{display:grid; grid-template-columns:1fr; gap:28px}
+@media (min-width:940px){
+  .atlas-grid{grid-template-columns:minmax(0,400px) minmax(0,1fr); gap:clamp(24px,4vw,56px); align-items:start}
+  .map-side{position:sticky; top:calc(env(safe-area-inset-top,0px) + 62px)}
+}
+.map-side{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px 10px 10px;
+  box-shadow:var(--shadow);
+}
+.map-head{display:flex; justify-content:space-between; align-items:baseline; padding:0 8px 8px; gap:10px}
+.map-head .mono{color:var(--muted); font-size:10px}
+.map-legend{display:flex; gap:14px; padding:8px 8px 2px; flex-wrap:wrap; border-top:1px solid var(--line); margin-top:6px}
+.legend-item{display:flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; color:var(--muted); text-transform:uppercase}
+.legend-dot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--accent); background:transparent}
+.legend-dot.gold{background:var(--gold); border-color:var(--gold)}
+
+.map svg{display:block; width:100%; height:auto; max-height:74vh; margin:0 auto}
+.map .river{fill:none; stroke:var(--river); stroke-width:2.4; stroke-linecap:round; opacity:.85}
+.map .delta{fill:none; stroke:var(--river); stroke-width:1.4; opacity:.45}
+.map .lat{stroke:var(--line); stroke-width:1; stroke-dasharray:1 5}
+.map .lat-label{fill:var(--muted); font-family:var(--font-mono); font-size:8.5px; letter-spacing:.1em; opacity:.75}
+.map .sea{fill:var(--muted); font-family:var(--font-mono); font-size:9px; letter-spacing:.24em; opacity:.7}
+.map .leader{stroke:var(--line-strong); stroke-width:.9}
+.node{cursor:pointer; outline:none}
+.node .hit{fill:transparent}
+.node .ring{fill:var(--surface); stroke:var(--accent); stroke-width:1.4; transition:all .2s ease}
+.node .core{fill:var(--accent); transition:all .2s ease}
+.node:hover .ring,.node:focus-visible .ring{stroke-width:2.4}
+.node.is-active .ring{fill:var(--accent); stroke:var(--accent)}
+.node.is-active .core{fill:var(--surface)}
+.node.is-visited .ring{stroke:var(--gold); fill:var(--gold)}
+.node.is-visited .core{fill:var(--gold-wash)}
+.node.is-dim{opacity:.28}
+.node .n-label{fill:var(--ink); font-family:var(--font-mono); font-size:11px; letter-spacing:.01em; font-weight:500; transition:fill .2s}
+.node .n-sub{fill:var(--muted); font-family:var(--font-mono); font-size:9px; letter-spacing:.09em}
+.node.is-active .n-label{fill:var(--accent-ink)}
+.node.left .n-label,.node.left .n-sub{text-anchor:end}
+.node.dim-label{opacity:.35}
+
+/* ---------- chips ---------- */
+.chip-row{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px}
+.chip{
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.06em;
+  padding:7px 12px; border-radius:99px; border:1px solid var(--line-strong);
+  background:transparent; color:var(--ink-soft); cursor:pointer; white-space:nowrap;
+  transition:background .18s, color .18s, border-color .18s;
+}
+.chip:hover{border-color:var(--accent); color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:var(--bg)}
+
+/* ---------- zone groups + temple cards ---------- */
+.zone{margin-bottom:26px}
+.zone-head{display:flex; align-items:baseline; gap:10px; padding-bottom:8px; border-bottom:1px solid var(--line-strong); margin-bottom:12px}
+.zone-head .zh{font-family:var(--font-mono); font-size:11px; letter-spacing:.16em; color:var(--accent-ink)}
+.zone-head .zr{margin-left:auto; font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; color:var(--muted)}
+
+.temple{
+  border-bottom:1px solid var(--line);
+  background:transparent;
+}
+.temple[open]{background:var(--surface); border-radius:10px; border-bottom-color:transparent; box-shadow:var(--shadow); margin:8px 0}
+.temple.is-hidden{display:none}
+.temple summary{
+  list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px;
+  padding:13px 10px; border-radius:10px;
+}
+.temple summary::-webkit-details-marker{display:none}
+.temple summary:hover{background:var(--accent-wash)}
+.temple[open] summary{border-bottom:1px dashed var(--line)}
+.t-name{font-family:var(--font-display); font-size:19px; font-weight:500; letter-spacing:.01em; line-height:1.3; min-width:0}
+.t-name .en{display:block; font-family:var(--font-mono); font-size:9.5px; letter-spacing:.14em; color:var(--muted); text-transform:uppercase; margin-top:2px; font-weight:400}
+.t-god{margin-left:auto; text-align:right; font-family:var(--font-mono); font-size:10px; letter-spacing:.06em; color:var(--muted); flex:none; max-width:38%}
+.t-god b{display:block; color:var(--accent-ink); font-weight:500; letter-spacing:.04em}
+.t-plus{width:18px;height:18px;flex:none;position:relative;opacity:.6}
+@media (max-width:480px){ .t-god{display:none} }
+.t-plus::before,.t-plus::after{content:"";position:absolute;background:var(--ink); left:50%; top:50%; transform:translate(-50%,-50%)}
+.t-plus::before{width:11px;height:1.4px}
+.t-plus::after{width:1.4px;height:11px; transition:transform .2s}
+.temple[open] .t-plus::after{transform:translate(-50%,-50%) rotate(90deg); opacity:0}
+
+.t-body{padding:4px 18px 20px; display:grid; gap:16px}
+@media (min-width:720px){ .t-body{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:22px; padding:14px 20px 22px} }
+.t-body p{margin:0; font-size:15.5px; line-height:1.78; color:var(--ink-soft)}
+.t-must{margin:0; padding:0; list-style:none; display:grid; gap:8px}
+.t-must li{font-size:14px; line-height:1.55; padding-left:16px; position:relative; color:var(--ink-soft)}
+.t-must li::before{content:""; position:absolute; left:0; top:.62em; width:6px; height:6px; border:1px solid var(--gold); transform:rotate(45deg)}
+.facts{display:grid; grid-template-columns:auto 1fr; gap:6px 16px; font-size:12.5px; margin-top:2px}
+.facts dt{font-family:var(--font-mono); font-size:10px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; padding-top:3px}
+.facts dd{margin:0; color:var(--ink-soft)}
+.tip{font-size:13px; color:var(--muted); border-left:2px solid var(--gold); padding-left:12px; margin:0; line-height:1.65}
+.visit{
+  justify-self:start; display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  padding:8px 14px; border-radius:99px; border:1px solid var(--line-strong); background:transparent;
+  color:var(--ink-soft); cursor:pointer; transition:all .18s;
+}
+.visit:hover{border-color:var(--gold); color:var(--ink)}
+.visit[aria-pressed="true"]{background:var(--gold); border-color:var(--gold); color:#14110A}
+.visit .tick{width:10px;height:10px;border:1.2px solid currentColor;border-radius:2px;display:inline-block}
+.visit[aria-pressed="true"] .tick{background:currentColor}
+
+/* ---------- myth cards ---------- */
+.myths-grid{display:grid; grid-template-columns:1fr; gap:18px}
+@media (min-width:700px){ .myths-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (min-width:1080px){ .myths-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.myth{
+  border:1px solid var(--line); border-radius:12px; padding:22px 22px 20px;
+  background:var(--surface); display:flex; flex-direction:column; gap:12px; min-width:0;
+  position:relative; overflow:hidden;
+}
+.myth::after{content:""; position:absolute; inset:0 auto 0 0; width:3px; background:var(--accent); opacity:0; transition:opacity .2s}
+.myth:hover::after{opacity:.85}
+.myth .m-top{display:flex; align-items:baseline; gap:10px}
+.myth .m-num{font-family:var(--font-mono); font-size:10px; letter-spacing:.14em; color:var(--gold)}
+.myth .m-god{font-family:var(--font-mono); font-size:9.5px; letter-spacing:.16em; color:var(--muted); text-transform:uppercase; margin-left:auto; text-align:right}
+.myth h3{font-family:var(--font-display); font-size:22px; font-weight:600; margin:0; line-height:1.28; letter-spacing:.005em}
+.myth p{margin:0; font-size:14.5px; line-height:1.72; color:var(--ink-soft)}
+.myth .m-look{font-size:13px; color:var(--muted); line-height:1.6; padding-top:12px; border-top:1px solid var(--line); margin-top:auto}
+.myth .m-look b{color:var(--accent-ink); font-weight:500; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; display:block; margin-bottom:4px}
+.m-temples{display:flex; flex-wrap:wrap; gap:6px}
+.m-temples button{
+  font-family:var(--font-mono); font-size:10.5px; letter-spacing:.04em;
+  background:var(--accent-wash); color:var(--accent-ink); border:0; border-radius:4px;
+  padding:4px 8px; cursor:pointer;
+}
+.m-temples button:hover{background:var(--accent); color:var(--surface)}
+
+/* ---------- itinerary ---------- */
+.plan{display:grid; gap:0; border-top:1px solid var(--line-strong)}
+.day{
+  display:grid; grid-template-columns:52px minmax(0,1fr); gap:16px;
+  padding:20px 0; border-bottom:1px solid var(--line); align-items:start;
+}
+@media (min-width:760px){ .day{grid-template-columns:64px minmax(0,1.05fr) minmax(0,1fr); gap:24px} }
+.day-n{font-family:var(--font-display); font-size:clamp(24px,3vw,32px); line-height:1; color:var(--gold); font-variant-numeric:tabular-nums; padding-top:2px}
+.day-main h4{font-family:var(--font-display); font-size:19px; font-weight:600; margin:0 0 5px; line-height:1.35}
+.day-main p{margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.7}
+.day-sites{display:flex; flex-wrap:wrap; gap:6px; align-items:flex-start}
+.day-sites span{
+  font-family:var(--font-mono); font-size:10px; letter-spacing:.05em; color:var(--muted);
+  border:1px solid var(--line); padding:3px 7px; border-radius:3px; white-space:nowrap;
+}
+.day-sites .key{color:var(--gold); border-color:var(--gold-wash); background:var(--gold-wash)}
+
+/* ---------- notes ---------- */
+.notes{display:grid; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden}
+@media (min-width:760px){ .notes{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.note{background:var(--surface); padding:22px 22px 24px; min-width:0}
+.note h4{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; margin:0 0 10px; color:var(--accent-ink)}
+.note p{margin:0; font-size:14.5px; line-height:1.72; color:var(--ink-soft)}
+.note p + p{margin-top:8px}
+
+/* ---------- floor plans ---------- */
+.t-plan{
+  grid-column:1/-1; border-top:1px dashed var(--line); padding-top:14px;
+  display:grid; gap:14px; min-width:0;
+}
+@media (min-width:660px){
+  .t-plan{grid-template-columns:minmax(0,1fr) minmax(150px,190px); gap:18px; align-items:start}
+}
+.plan-fig{margin:0; min-width:0}
+.plan-fig svg{display:block; width:100%; height:auto; background:var(--bg-deep); border-radius:8px; border:1px solid var(--line)}
+.plan-fig figcaption{font-family:var(--font-mono); font-size:9px; letter-spacing:.1em; color:var(--muted); margin-top:6px; text-transform:uppercase}
+.p-room{fill:var(--surface-2); stroke:var(--line-strong); stroke-width:1}
+.p-court{fill:none; stroke:var(--line-strong); stroke-width:1; stroke-dasharray:3 3}
+.p-hol{fill:var(--accent-wash); stroke:var(--accent); stroke-width:1.4}
+.p-naos{fill:var(--accent); opacity:.45}
+.p-water{fill:var(--river); opacity:.16; stroke:var(--river); stroke-width:.8}
+.p-zone{fill:none; stroke:var(--line-strong); stroke-width:.9; stroke-dasharray:2 4}
+.p-wall{fill:var(--ink); opacity:.32}
+.p-stair{fill:var(--gold-wash); stroke:var(--gold); stroke-width:.8}
+.p-sq{fill:var(--gold-wash); stroke:var(--gold); stroke-width:1.2}
+.p-pyr{fill:var(--surface-2); stroke:var(--line-strong); stroke-width:1.2}
+.p-col{fill:var(--accent); opacity:.5}
+.p-dot{fill:var(--gold); opacity:.85}
+.p-axis{stroke:var(--accent); stroke-width:.9; stroke-dasharray:6 4; opacity:.45}
+.p-mark circle{fill:var(--surface); stroke:var(--accent); stroke-width:1.2}
+.p-mark text{fill:var(--accent-ink); font-family:var(--font-mono); font-size:9px; text-anchor:middle; dominant-baseline:central}
+.plan-legend{list-style:none; margin:0; padding:0; display:grid; gap:6px; font-size:11.5px; line-height:1.45; color:var(--ink-soft)}
+.plan-legend li{display:flex; gap:8px; min-width:0}
+.plan-legend .num{
+  font-family:var(--font-mono); font-size:9px; color:var(--accent-ink); flex:none;
+  width:15px; height:15px; border:1px solid var(--line-strong); border-radius:50%;
+  display:inline-flex; align-items:center; justify-content:center; margin-top:1px;
+}
+
+/* ---------- itinerary dates ---------- */
+.day-date{display:block; font-family:var(--font-mono); font-size:10px; letter-spacing:.04em; color:var(--muted); margin-top:8px; font-weight:400; font-variant-numeric:tabular-nums}
+.day-date b{color:var(--accent-ink); font-weight:500}
+.plan-date{display:flex; align-items:center; gap:10px; padding-bottom:6px; flex:none}
+.plan-date label{color:var(--muted); font-size:10px}
+.plan-date input{
+  font-family:var(--font-mono); font-size:12px; color:var(--ink);
+  background:var(--surface); border:1px solid var(--line-strong); border-radius:6px;
+  padding:6px 9px; color-scheme:inherit;
+}
+.plan-date input:hover{border-color:var(--accent)}
+
+/* ---------- glossary ---------- */
+.gloss-bar{display:flex; align-items:center; gap:12px; margin-bottom:18px; flex-wrap:wrap}
+.gloss-bar input{
+  flex:1 1 220px; min-width:0; font-family:var(--font-body); font-size:15px;
+  padding:9px 13px; border-radius:8px; border:1px solid var(--line-strong);
+  background:var(--surface); color:var(--ink);
+}
+.gloss-bar input::placeholder{color:var(--muted)}
+.gloss-bar input:focus{outline:2px solid var(--accent); outline-offset:1px}
+.gloss-bar .count{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; color:var(--muted)}
+.table-scroll{overflow-x:auto; border:1px solid var(--line); border-radius:10px}
+table.gloss{width:100%; min-width:460px; border-collapse:collapse; font-size:14px; background:var(--surface)}
+table.gloss caption{text-align:left; padding:12px 16px 10px; font-family:var(--font-mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-ink); border-bottom:1px solid var(--line)}
+table.gloss th{
+  text-align:left; font-family:var(--font-mono); font-size:9.5px; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--muted); font-weight:500;
+  padding:8px 16px; border-bottom:1px solid var(--line);
+}
+table.gloss td{padding:9px 16px; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.45; color:var(--ink-soft)}
+table.gloss tr:last-child td{border-bottom:0}
+table.gloss tr.is-hidden{display:none}
+.gloss-zh{color:var(--ink); font-weight:500}
+.gloss-ar{direction:rtl; unicode-bidi:isolate; font-size:17px; color:var(--ink); line-height:1.3; display:block}
+.gloss-en{font-family:var(--font-mono); font-size:11px; letter-spacing:.04em; color:var(--muted); display:block; margin-top:2px}
+.gloss-say{font-family:var(--font-mono); font-size:11.5px; color:var(--accent-ink); white-space:nowrap}
+.gloss-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px}
+
+footer{padding-block:44px 64px; border-top:1px solid var(--line-strong); margin-top:20px; display:flex; flex-wrap:wrap; gap:12px 28px; color:var(--muted); font-size:12.5px; line-height:1.7}
+footer .mono{font-size:10px; letter-spacing:.16em}
+footer p{margin:0; max-width:52ch}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important; transition:none !important; scroll-behavior:auto !important}
+}
+html{scroll-behavior:smooth}
+</style>
+<header class="bar wrap">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-name">尼罗河神话地图</span>
+    <span class="brand-sub mono">Nile Myth Atlas</span>
+  </div>
+  <nav class="topnav" aria-label="页面导航">
+    <a href="#atlas">地图</a><a href="#myths">神话</a><a href="#plan">行程</a><a href="#glossary">词表</a><a href="#notes">提示</a>
+  </nav>
+  <div class="progress" role="group" aria-label="已到访神庙进度">
+    <span class="progress-num"><b id="visitCount">0</b> / <span id="visitTotal">15</span></span>
+    <span class="progress-track"><span class="progress-fill" id="progressFill"></span></span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="padding-block:clamp(34px,5vw,62px) clamp(20px,3vw,34px)">
+    <p class="hero-eyebrow mono">Egypt · 15 座神庙 · 6 段神话</p>
+    <h1>顺着河流<br>读一段<em>神话</em></h1>
+    <p class="hero-lede">埃及的神话不是一本书，而是一条河。每个故事都落在某座神庙的石头上——<b>从赫利奥波利斯的创世丘，到阿布辛贝的日出</b>，沿着尼罗河往南，就会把这些故事按顺序听完。</p>
+    <div class="stats">
+      <div class="stat"><span class="k">15<small>座</small></span><span class="v">神庙与墓葬</span></div>
+      <div class="stat"><span class="k">6<small>段</small></span><span class="v">核心神话</span></div>
+      <div class="stat"><span class="k">1,000<small>km</small></span><span class="v">开罗 → 阿布辛贝</span></div>
+      <div class="stat"><span class="k">10<small>天</small></span><span class="v">建议行程</span></div>
+    </div>
+  </section>
+
+  <section id="atlas">
+    <div class="sec-head">
+      <span class="idx mono">01 / 地图</span>
+      <h2>神庙挂在河上</h2>
+      <p>点地图上的点，就能翻到对应的神庙。地图按纬度示意，不按比例。</p>
+    </div>
+
+    <div class="atlas-grid">
+      <aside class="map-side">
+        <div class="map-head">
+          <span class="mono">N ↑ · 南北纵剖</span>
+          <span class="mono" style="color:var(--muted)">示意</span>
+        </div>
+        <div class="map">
+          <svg viewBox="0 0 360 660" role="img" aria-label="埃及尼罗河沿岸神庙分布示意图，从北面的三角洲到南面的阿布辛贝">
+            <defs>
+              <linearGradient id="nileFade" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--river)" stop-opacity=".28"/>
+                <stop offset="18%" stop-color="var(--river)" stop-opacity=".95"/>
+                <stop offset="100%" stop-color="var(--river)" stop-opacity=".55"/>
+              </linearGradient>
+            </defs>
+
+            <text class="sea" x="180" y="16" text-anchor="middle">M E D I T E R R A N E A N</text>
+            <line x1="16" y1="24" x2="344" y2="24" stroke="var(--line-strong)" stroke-width="1"/>
+            <path class="delta" d="M150 42 L106 26 M150 42 L194 26 M150 62 L122 26 M150 62 L178 26"/>
+            <path class="river" stroke="url(#nileFade)" d="M150 42 C152 70 158 92 154 118 C150 144 146 168 150 196 C154 224 154 250 150 276 C146 302 150 322 154 344 C158 366 152 388 148 410 C144 432 148 452 152 472 C156 492 150 512 148 534 C146 556 150 578 150 604 C150 612 150 616 150 618"/>
+
+            <g id="latLines"></g>
+            <g id="leaders"></g>
+            <g id="nodes"></g>
+
+            <text class="sea" x="180" y="648" text-anchor="middle">L A K E  N A S S E R</text>
+          </svg>
+        </div>
+        <div class="map-legend">
+          <span class="legend-item"><span class="legend-dot"></span>未到访</span>
+          <span class="legend-item"><span class="legend-dot gold"></span>已到访</span>
+        </div>
+      </aside>
+
+      <div class="temple-col">
+        <div class="chip-row" role="group" aria-label="按主题筛选神庙">
+          <button class="chip" data-filter="all" aria-pressed="true">全部 15</button>
+          <button class="chip" data-filter="cosmos" aria-pressed="false">创世与太阳</button>
+          <button class="chip" data-filter="death" aria-pressed="false">死亡与复活</button>
+          <button class="chip" data-filter="kingship" aria-pressed="false">王权与神兽</button>
+          <button class="chip" data-filter="goddess" aria-pressed="false">女神的居所</button>
+        </div>
+        <div id="templeList"></div>
+      </div>
+    </div>
+  </section>
+  <section id="myths">
+    <div class="sec-head">
+      <span class="idx mono">02 / 神话</span>
+      <h2>六段故事</h2>
+      <p>每一段都有一处能看见它的地方。点神庙名，地图会跳过去。</p>
+    </div>
+    <div class="myths-grid">
+
+      <article class="myth">
+        <div class="m-top"><span class="m-num">01</span><span class="m-god">Heliopolis</span></div>
+        <h3>从原初之水浮起的土丘</h3>
+        <p>世界最初是一片叫“努恩”的混沌之水。第一块土丘从中升起，太阳神阿图姆站在丘上，打了一个喷嚏，吐出了风神舒与湿气女神泰芙努特——人类和众神由此开始。</p>
+        <div class="m-temples"><button data-goto="heliopolis">赫利奥波利斯</button></div>
+        <div class="m-look"><b>现场找什么</b>开罗郊外的“太阳城”如今只剩一根红色花岗岩方尖碑（塞努斯雷特一世，约 20 米高），原为一对，另一根在 13 世纪就倒了。站在它下面，脚下就是整个神话体系的坐标原点。</div>
+      </article>
+
+      <article class="myth">
+        <div class="m-top"><span class="m-num">02</span><span class="m-god">Abydos</span></div>
+        <h3>奥西里斯被杀，又被拼回来</h3>
+        <p>奥西里斯被弟弟赛特锁进木箱、封进棺材、沉入尼罗河。伊西斯找到尸体，赛特又把它剁成碎块撒满全国。伊西斯和妹妹奈芙蒂斯沿着河一块块找回，拼成人形，用翅膀扇出风，让他重新活了一夜——那一夜怀上了荷鲁斯。</p>
+        <div class="m-temples"><button data-goto="abydos">阿拜多斯</button><button data-goto="philae">菲莱</button></div>
+        <div class="m-look"><b>现场找什么</b>阿拜多斯的奥西里斯神庙后墙刻着一列“神迹名单”，被认为对应他被分尸的地点。菲莱的伊西斯神庙里，伊西斯哺乳荷鲁斯的浮雕被磨得发亮——朝圣者千年来摸过。</div>
+      </article>
+
+      <article class="myth">
+        <div class="m-top"><span class="m-num">03</span><span class="m-god">Dendera</span></div>
+        <h3>荷鲁斯与赛特的八十回合</h3>
+        <p>为父报仇的荷鲁斯与赛特争了八十年王位：比潜水、比造石船、比谁先说出对方的名字。最后众神判决荷鲁斯胜，王权交给他，赛特被放逐到沙漠。丹德拉的墙上把这场争斗画成了几乎没有间断的连环画。</p>
+        <div class="m-temples"><button data-goto="dendera">丹德拉</button><button data-goto="edfu">埃德富</button></div>
+        <div class="m-look"><b>现场找什么</b>埃德富的塔门正厅，整面墙是荷鲁斯站在船头用长矛刺河马形态的赛特。丹德拉西侧外墙上则是完全另一套画法：几乎能读成漫画分格。</div>
+      </article>
+
+      <article class="myth">
+        <div class="m-top"><span class="m-num">04</span><span class="m-god">Philae</span></div>
+        <h3>伊西斯把太阳停住</h3>
+        <p>为了救被毒蛇咬伤的儿子荷鲁斯，伊西斯逼太阳神拉说出自己真正的名字——掌握名字就掌握了力量。拉最终妥协，把真名交给她，荷鲁斯痊愈。这也是埃及神话里最著名的一次“咒语谈判”。</p>
+        <div class="m-temples"><button data-goto="philae">菲莱</button></div>
+        <div class="m-look"><b>现场找什么</b>菲莱的“玛米西”小神庙（Mammisi）是专为女神生子仪式建的；外墙上的伊西斯常被画成一只鸢鸟悬在荷鲁斯上方。傍晚登岛，灯光把人照得比石像小很多。</div>
+      </article>
+
+      <article class="myth">
+        <div class="m-top"><span class="m-num">05</span><span class="m-god">Thebes</span></div>
+        <h3>太阳船每夜穿过冥界</h3>
+        <p>太阳神拉白天乘“曼杰特”船横过天空，夜里换乘“梅塞克泰特”船驶入冥界，与巨蛇阿佩普搏斗。每过一小时的关卡都要念对一句咒语。墓室墙上的《冥界书》《门之书》，就是这套夜航的导航图。</p>
+        <div class="m-temples"><button data-goto="karnak">卡纳克</button><button data-goto="valleykings">帝王谷</button></div>
+        <div class="m-look"><b>现场找什么</b>卡纳克的圣湖旁有一座圣甲虫石像，甲虫推着日轮——那是太阳每天“自己推自己”上岸的意象。帝王谷 KV9（拉美西斯五世/六世）的天花板是保存最好的《门之书》全图。</div>
+      </article>
+
+      <article class="myth">
+        <div class="m-top"><span class="m-num">06</span><span class="m-god">Aswan</span></div>
+        <h3>一年一次的泛滥</h3>
+        <p>尼罗河每年 6 月开始上涨，8 月漫过河岸，10 月退去，留下黑泥。泛滥本身被当成神迹：哈皮神带来水，索贝克神住在水里，孔姆翁布的鳄鱼被养在池中、戴上金饰。没有泛滥，就没有埃及。</p>
+        <div class="m-temples"><button data-goto="komombo">孔姆翁布</button><button data-goto="aswan">阿斯旺</button></div>
+        <div class="m-look"><b>现场找什么</b>孔姆翁布神庙双门并立，南半属鳄鱼神索贝克、北半属鹰神荷鲁斯，进院后左右两套神龛一直平行到最后。院里的尼罗河水位计（Nilometer）刻着历代洪水高度。</div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="plan">
+    <div class="sec-head">
+      <span class="idx mono">03 / 行程</span>
+      <h2>十天，从北到南</h2>
+      <p>按水路上溯的顺序排，神话刚好也从创世走到泛滥。</p>
+      <div class="plan-date">
+        <label class="mono" for="startDate">出发日</label>
+        <input type="date" id="startDate">
+      </div>
+    </div>
+    <div class="plan">
+      <div class="day"><span class="day-n">01</span><div class="day-main"><h4>开罗 · 先看坐标原点<span class="day-date" data-day="0"></span></h4><p>落地后去埃及博物馆看《亡灵书》纸草和卡诺匹斯罐，再往北到赫利奥波利斯看那根孤零零的方尖碑。神话的第一章在这里。</p></div><div class="day-sites"><span class="key">赫利奥波利斯</span><span>埃及博物馆</span></div></div>
+      <div class="day"><span class="day-n">02</span><div class="day-main"><h4>吉萨 · 与太阳一起醒来<span class="day-date" data-day="1"></span></h4><p>清晨进吉萨，人少、光斜。狮身人面像面朝日出，金字塔的四个面几乎正对四方位。下午飞卢克索，或坐一晚卧铺火车。</p></div><div class="day-sites"><span class="key">吉萨</span><span>大埃及博物馆</span></div></div>
+      <div class="day"><span class="day-n">03</span><div class="day-main"><h4>卢克索东岸 · 卡纳克与卢克索<span class="day-date" data-day="2"></span></h4><p>卡纳克要留足半天：柱厅、圣湖、图特摩斯三世的节庆厅，一路都是太阳神话的注脚。傍晚去卢克索神庙看灯光下的塔门。</p></div><div class="day-sites"><span class="key">卡纳克</span><span>卢克索神庙</span></div></div>
+      <div class="day"><span class="day-n">04</span><div class="day-main"><h4>卢克索西岸 · 冥界的图纸<span class="day-date" data-day="3"></span></h4><p>帝王谷、哈特谢普苏特神庙、门农巨像。选一个带《门之书》的墓（KV9 或 KV11）进去，把头顶那幅图慢慢看完。</p></div><div class="day-sites"><span class="key">帝王谷</span><span>哈特谢普苏特</span><span>门农巨像</span></div></div>
+      <div class="day"><span class="day-n">05</span><div class="day-main"><h4>丹德拉 · 哈托尔的家<span class="day-date" data-day="4"></span></h4><p>包车往返约 5 小时。地下密室的天花板上有著名的“丹德拉黄道带”复制品，柱头的哈托尔面孔四面各一。</p></div><div class="day-sites"><span class="key">丹德拉</span></div></div>
+      <div class="day"><span class="day-n">06</span><div class="day-main"><h4>阿拜多斯 · 奥西里斯的城<span class="day-date" data-day="5"></span></h4><p>去阿拜多斯要走一段乡路，但值得：塞提一世神庙的七座神龛、奥西里斯复活的浮雕，还有被称为“直升机”的叠刻面板。</p></div><div class="day-sites"><span class="key">阿拜多斯</span></div></div>
+      <div class="day"><span class="day-n">07</span><div class="day-main"><h4>埃德富 → 孔姆翁布 · 一天两座<span class="day-date" data-day="6"></span></h4><p>从卢克索南下，先到保存最完整的埃德富神庙看荷鲁斯战赛特的巨墙，再在孔姆翁布停下，站在双神庙中轴线上。</p></div><div class="day-sites"><span class="key">埃德富</span><span class="key">孔姆翁布</span></div></div>
+      <div class="day"><span class="day-n">08</span><div class="day-main"><h4>阿斯旺 · 河变窄的地方<span class="day-date" data-day="7"></span></h4><p>菲莱神庙在岛上，先坐船再走路；下午去未完成的方尖碑看石材是怎么被“剥”出来的。傍晚帆船（felucca）上等日落。</p></div><div class="day-sites"><span class="key">菲莱</span><span class="key">阿斯旺</span></div></div>
+      <div class="day"><span class="day-n">09</span><div class="day-main"><h4>阿布辛贝 · 赶在日出<span class="day-date" data-day="8"></span></h4><p>凌晨三点出发，单程三小时穿过沙漠。拉美西斯二世的大神庙朝东，2 月和 10 月各有两天太阳直射进内殿，把三座神照亮、独独留下黑暗之神。</p></div><div class="day-sites"><span class="key">阿布辛贝</span></div></div>
+      <div class="day"><span class="day-n">10</span><div class="day-main"><h4>回程 · 留白<span class="day-date" data-day="9"></span></h4><p>返回阿斯旺或直飞开罗。把没看完的细节补上：卡纳克的壁画、博物馆的图坦卡蒙展厅，或者在尼罗河边坐一下午。</p></div><div class="day-sites"><span>机动</span></div></div>
+    </div>
+  </section>
+
+  <section id="glossary">
+    <div class="sec-head">
+      <span class="idx mono">04 / 现场用</span>
+      <h2>看牌子、问路、认神</h2>
+      <p>神庙里的标示牌多是阿拉伯语与英语双语；下面这些词在墙上、牌子上、售票口都会遇到。</p>
+    </div>
+    <div class="gloss-bar">
+      <input type="search" id="glossSearch" placeholder="搜中文、英文或发音…" aria-label="搜索词条">
+      <span class="count" id="glossCount"></span>
+    </div>
+    <div class="gloss-tabs chip-row" role="group" aria-label="词表分类">
+      <button class="chip" data-gtab="all" aria-pressed="true">全部</button>
+      <button class="chip" data-gtab="site" aria-pressed="false">神庙构造</button>
+      <button class="chip" data-gtab="god" aria-pressed="false">神祇</button>
+      <button class="chip" data-gtab="travel" aria-pressed="false">旅行用语</button>
+    </div>
+    <div class="table-scroll">
+      <table class="gloss">
+        <caption id="glossCaption">神庙构造</caption>
+        <thead>
+          <tr><th scope="col">中文</th><th scope="col">English</th><th scope="col">العربية</th><th scope="col">读音</th></tr>
+        </thead>
+        <tbody id="glossBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="notes">
+    <div class="sec-head">
+      <span class="idx mono">05 / 提示</span>
+      <h2>去之前</h2>
+      <p>三件会让神庙好看起来的事。</p>
+    </div>
+    <div class="notes">
+      <div class="note"><h4>时间</h4><p>10 月到 4 月是最舒服的季节，白天 25–30°C；6–8 月卢克索能到 45°C。阿布辛贝的太阳奇观在 2 月 22 日和 10 月 22 日前后。</p><p>多数神庙 6:00 开门，7 点前进场的光线最好，人也最少。</p></div>
+      <div class="note"><h4>看图的方法</h4><p>神庙墙上的神像有固定朝向：面朝内殿的是神，面朝观众的是王。同一面墙上重复出现的“王献祭给神”，读的是顺序而不是故事。</p><p>凡是被刮平、抹掉名字的地方，多半是后世法老在“除名”——阿肯那顿的名字被抹得最狠。</p></div>
+      <div class="note"><h4>实用</h4><p>持外国护照可在阿斯旺、卢克索买景点通票；阿布辛贝需提前一天登记车次。摄影在内殿通常禁闪光灯，部分墓室完全禁拍。</p><p>带一条薄围巾：既能挡沙，也能在需要时遮肩。小费（baksheesh）是日常，零钱比大钞好用。</p></div>
+    </div>
+  </section>
+
+</main>
+<footer class="wrap">
+  <span class="mono">Nile Myth Atlas</span>
+  <p>神庙地点按纬度示意，不做测绘用途。开放时间与票价以现场公告为准；阿布辛贝的太阳直射通常在 10 月 21–22 日与 2 月 21–22 日，具体以当年公告为准。</p>
+</footer>
+
+<script>
+const TEMPLES = [
+  { id:"heliopolis", zh:"赫利奥波利斯", en:"Heliopolis", god:"阿图姆 · 拉", zone:"三角洲与开罗", tag:"cosmos", x:86, y:64, side:"left",
+    era:"古王国起源，现存中王国遗迹", city:"开罗拉美西斯区",
+    text:"整座埃及神话体系的坐标原点。阿图姆从原初之水的土丘上升起，众神由他而来。这里曾是埃及最大的太阳神庙群，如今城市把神庙包了进去。",
+    must:["塞努斯雷特一世方尖碑，约 20 米，原为一对","方尖碑基座上的祭司题记","附近“圣母树”传说是伊西斯哺乳荷鲁斯之地"],
+    tip:"免费、人少，10 分钟就能看完——但这里才是整个神话体系真正开始的地方。" },
+
+  { id:"giza", zh:"吉萨金字塔", en:"Giza", god:"拉 · 荷鲁斯", zone:"三角洲与开罗", tag:"cosmos", x:214, y:100, side:"right",
+    era:"第四王朝，约公元前 2560 年", city:"开罗吉萨高原",
+    text:"金字塔的四个面几乎正对四方位，入口朝北。太阳神信仰在这里被砌成石头：国王死后随太阳一同升天，从金字塔顶层的“上升通道”穿出。",
+    must:["狮身人面像，面朝春分日出方向","胡夫金字塔内部的国王室与上升通道","大埃及博物馆（GEM）的太阳船展厅"],
+    tip:"早上 7 点前入场，光斜、人少、风凉。" },
+
+  { id:"saqqara", zh:"萨卡拉", en:"Saqqara", god:"奥西里斯 · 阿努比斯", zone:"三角洲与开罗", tag:"death", x:88, y:132, side:"left",
+    era:"第三王朝起，跨度两千年", city:"开罗以南 30 公里",
+    text:"埃及最古老的大型石造建筑群。左塞尔阶梯金字塔的“塞德节”庭院里，国王要在仪式上跑完一圈，证明自己还有力气统治——王权神话最早成形的地方之一。",
+    must:["左塞尔阶梯金字塔与环墙","乌纳斯金字塔内的金字塔文（最早的宗教文本）","塞拉皮雍的地下石棺厅"],
+    tip:"和吉萨分开一天去，这里几乎没人，讲解的质量反而更高。" },
+
+  { id:"abydos", zh:"阿拜多斯", en:"Abydos", god:"奥西里斯", zone:"中埃及", tag:"death", x:212, y:238, side:"right",
+    era:"塞提一世神庙，第十九王朝", city:"索哈杰省",
+    text:"奥西里斯信仰的中心，也是古代埃及人最想葬在附近的地方。塞提一世神庙的七座神龛并排而立，最深处是奥西里斯“复活”的浮雕序列。",
+    must:["七神龛殿，每座龛后有一条独立通道","奥西里斯神庙后墙的“神迹名单”","被称作“直升机”“潜水艇”的叠刻面板"],
+    tip:"单程约 2.5 小时车程，安排一整天；返程可顺路看丹德拉。" },
+
+  { id:"dendera", zh:"丹德拉", en:"Dendera", god:"哈托尔", zone:"中埃及", tag:"goddess", x:88, y:268, side:"left",
+    era:"托勒密时期，公元前 1 世纪", city:"基纳市附近",
+    text:"哈托尔女神的家，也是全埃及保存最完整的神庙天花板之一。哈托尔是爱、音乐与欢乐之神，柱头四面都是她的面孔，地下密室藏着星图。",
+    must:["柱厅天花板的“丹德拉黄道带”（原件在卢浮宫）","屋顶的哈托尔与荷鲁斯相拥浮雕","地下密室（需另购票）的照明壁画"],
+    tip:"从卢克索包车约 1 小时；下午光线穿进柱厅时最好看。" },
+
+  { id:"karnak", zh:"卡纳克", en:"Karnak", god:"阿蒙 · 拉", zone:"卢克索", tag:"kingship", x:213, y:306, side:"right",
+    era:"中王国至托勒密，建造逾两千年", city:"卢克索东岸",
+    text:"底比斯三神（阿蒙、穆特、孔苏）的主庙，也是“太阳船夜航”神话的起点：每天清晨，阿蒙的圣船从内殿出发，沿轴线被人抬到河边。",
+    must:["大柱厅，134 根柱，中央 12 根高 21 米","圣湖与圣甲虫石像","图特摩斯三世的节庆厅，天花板还留着颜料"],
+    tip:"清晨 6 点开门时进，柱厅里几乎没有人；带手电看浮雕细节。" },
+
+  { id:"luxor", zh:"卢克索神庙", en:"Luxor Temple", god:"阿蒙 · 穆特 · 孔苏", zone:"卢克索", tag:"kingship", x:88, y:330, side:"left",
+    era:"阿蒙霍特普三世起，拉美西斯二世扩建", city:"卢克索东岸",
+    text:"与卡纳克之间有一条 2.7 公里的狮身羊面像大道。每年“奥佩特节”，阿蒙的神像会被人从卡纳克抬到此处住上一个月——神庙本身就是一场年度仪式的路线图。",
+    must:["塔门前的一对方尖碑（另一根在巴黎协和广场）","拉美西斯二世的庭院与柱廊","夜晚灯光下的塔门"],
+    tip:"日落前后入场，灯光一开，石头会变成另一种颜色。" },
+
+  { id:"valleykings", zh:"帝王谷", en:"Valley of the Kings", god:"拉 · 奥西里斯", zone:"卢克索", tag:"death", x:212, y:352, side:"right",
+    era:"第十八至二十王朝", city:"卢克索西岸",
+    text:"墓室墙上的《门之书》《冥界书》不是装饰，而是夜航导航图：太阳神每过一个小时关卡该说什么、该防哪条蛇，都写在墙上。",
+    must:["KV9（拉美西斯五世/六世）天花板上的《门之书》全图","KV11（拉美西斯三世）的《冥界书》","KV62 图坦卡蒙墓（另购票）"],
+    tip:"每天开放的墓轮换，进门先看今日名单，再决定买几张票。" },
+
+  { id:"hatshepsut", zh:"哈特谢普苏特神庙", en:"Deir el-Bahari", god:"哈托尔 · 阿蒙", zone:"卢克索", tag:"goddess", x:88, y:374, side:"left",
+    era:"第十八王朝，约公元前 1470 年", city:"卢克索西岸",
+    text:"三层平台嵌进悬崖，是埃及最不像神庙的神庙。柱廊上刻着她“由阿蒙所生”的受孕故事——一位女法老用神话为自己补上合法性。",
+    must:["中层柱廊的“神圣诞生”浮雕","上层平台的哈托尔小祠","与门农巨像同游，相距 10 分钟"],
+    tip:"和帝王谷排在同一天上午；正午前悬崖的阴影最好看。" },
+
+  { id:"medinet", zh:"哈布城", en:"Medinet Habu", god:"阿蒙 · 拉美西斯三世", zone:"卢克索", tag:"kingship", x:212, y:396, side:"right",
+    era:"第二十王朝，拉美西斯三世", city:"卢克索西岸",
+    text:"拉美西斯三世的葬礼神庙，塔门上刻着他击败“海上民族”的整场战役。这是全埃及保存最完整的一处塔门浮雕，连战俘被清点的细节都在。",
+    must:["塔门上的海战浮雕","神庙后部的高窗与“窗口现身”结构","门口的巨像与柱厅色彩"],
+    tip:"常被行程漏掉，但人少、色彩好，适合补半天。" },
+
+  { id:"edfu", zh:"埃德富", en:"Edfu", god:"荷鲁斯", zone:"上埃及", tag:"kingship", x:214, y:424, side:"right",
+    era:"托勒密时期，公元前 237 年始建", city:"埃德富，卢克索以南 100 公里",
+    text:"全埃及保存最完整的神庙，几乎连屋顶都在。这里的荷鲁斯不是少年，而是成年战神——墙上整幅是他站在船头，用长矛刺向河马形态的赛特。",
+    must:["塔门与外墙的荷鲁斯战赛特巨幅浮雕","内殿的荷鲁斯金像（复制品）","“胜利仪式”的完整浮雕序列"],
+    tip:"从卢克索到阿斯旺的路上顺访，停留 1.5 小时足够。" },
+
+  { id:"komombo", zh:"孔姆翁布", en:"Kom Ombo", god:"索贝克 · 荷鲁斯", zone:"上埃及", tag:"death", x:86, y:478, side:"left",
+    era:"托勒密时期", city:"阿斯旺以北 45 公里",
+    text:"少见的双神庙：南半属鳄鱼神索贝克，北半属鹰神荷鲁斯，两套门、两套殿一直平行到最后。墙上的医疗器械浮雕常被当作“古代外科手术”的证据。",
+    must:["沿中轴线站定，左右两座门同时入画","院里的尼罗河水位计（Nilometer）","西墙的医疗器械与分娩浮雕"],
+    tip:"傍晚 4 点后到达，灯亮起来时游客团已经走了。" },
+
+  { id:"philae", zh:"菲莱", en:"Philae", god:"伊西斯", zone:"上埃及", tag:"goddess", x:214, y:532, side:"right",
+    era:"托勒密时期至罗马", city:"阿斯旺，阿吉尔基亚岛",
+    text:"伊西斯最重要的祭祀中心。阿斯旺大坝修建后，整座神庙被拆成块、搬到更高的岛上重装——它是埃及唯一一座“整体搬家”的神庙。",
+    must:["伊西斯主殿与“玛米西”（生子祠）","哈托尔小亭与图拉真亭","从水面看神庙的第一眼"],
+    tip:"乘船登岛，傍晚场次人少、光线低，是一天里最好的时段。" },
+
+  { id:"aswan", zh:"阿斯旺", en:"Aswan", god:"克努姆 · 哈皮", zone:"上埃及", tag:"cosmos", x:86, y:584, side:"left",
+    era:"中王国至托勒密", city:"阿斯旺",
+    text:"花岗岩的产地，也是河水开始变窄的地方。未完成的方尖碑还躺在岩床上，能看见工匠是如何一点点把它从山体里“剥”出来的。",
+    must:["未完成的方尖碑，长约 42 米","菲莱神庙码头对面的象岛","下午乘 felucca 帆船等日落"],
+    tip:"把菲莱和阿斯旺排在同一天，上午神庙、下午石头、傍晚帆船。" },
+
+  { id:"abusimbel", zh:"阿布辛贝", en:"Abu Simbel", god:"拉 · 阿蒙 · 普塔", zone:"努比亚", tag:"cosmos", x:214, y:612, side:"right",
+    era:"第十九王朝，拉美西斯二世", city:"阿斯旺以南 280 公里",
+    text:"内殿尽头坐着四尊神：拉、拉美西斯二世本人、阿蒙、普塔。每年两天，日出光穿过 60 米长的走廊，依次照亮前三尊，唯独黑暗之神普塔始终留在阴影里。",
+    must:["大神庙内殿的四尊坐像","小神庙（献给奈菲尔塔利与哈托尔）","迁移工程的接缝线——整座山被切块抬高过"],
+    tip:"凌晨出发，单程 3 小时；4 点前到能占到内殿前排的位置。" }
+];
+
+const ZONES = ["三角洲与开罗","中埃及","卢克索","上埃及","努比亚"];
+const TAGS = { all:"全部", cosmos:"创世与太阳", death:"死亡与复活", kingship:"王权与神兽", goddess:"女神的居所" };
+
+const svgNS = "http://www.w3.org/2000/svg";
+function el(name, attrs, parent){
+  const n = document.createElementNS(svgNS, name);
+  for(const k in attrs) n.setAttribute(k, attrs[k]);
+  if(parent) parent.appendChild(n);
+  return n;
+}
+
+/* ---------- state ---------- */
+let visited = new Set();
+let activeId = null;
+let filter = "all";
+
+try{
+  const raw = localStorage.getItem("nile.visited");
+  if(raw) visited = new Set(JSON.parse(raw));
+}catch(e){}
+function saveVisited(){
+  try{ localStorage.setItem("nile.visited", JSON.stringify([...visited])); }catch(e){}
+}
+
+/* ---------- map ---------- */
+const nodesLayer = document.getElementById("nodes");
+const leadersLayer = document.getElementById("leaders");
+const latLayer = document.getElementById("latLines");
+
+function riverX(y){ return 150 + 6*Math.sin((y-40)/70); }
+
+[100,196,292,388,484,580].forEach((y,i)=>{
+  el("line",{x1:16,y1:y,x2:344,y2:y,class:"lat"},latLayer);
+  const lat = (30.5 - i*2.4).toFixed(1);
+  el("text",{x:20,y:y-5,class:"lat-label"},latLayer).textContent = "北纬 " + lat + "°";
+});
+
+TEMPLES.forEach(t=>{
+  const rx = riverX(t.y);
+  const g = el("g",{class:"node " + t.side, tabindex:"0", role:"button","aria-label":t.zh + "，" + t.god, "data-id":t.id}, nodesLayer);
+  el("line",{x1:rx,y1:t.y,x2:t.x,y2:t.y,class:"leader"},leadersLayer);
+  el("circle",{cx:t.x,cy:t.y,r:15,class:"hit"},g);
+  el("circle",{cx:t.x,cy:t.y,r:7,class:"ring"},g);
+  el("circle",{cx:t.x,cy:t.y,r:2.4,class:"core"},g);
+  const lx = t.side === "left" ? t.x - 14 : t.x + 14;
+  el("text",{x:lx,y:t.y-1,class:"n-label"},g).textContent = t.zh;
+  el("text",{x:lx,y:t.y+12,class:"n-sub"},g).textContent = t.en.toUpperCase();
+  g.addEventListener("click",()=>gotoTemple(t.id));
+  g.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); gotoTemple(t.id);} });
+  t.node = g;
+});
+
+/* ---------- floor plans ---------- */
+const R=(x,y,w,h,c)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" class="${c||"p-room"}" rx="1"/>`;
+const C=(cx,cy,r,c)=>`<circle cx="${cx}" cy="${cy}" r="${r}" class="${c||"p-col"}"/>`;
+const P=(d,c)=>`<path d="${d}" class="${c||"p-wall"}"/>`;
+const T=(x,y,n)=>`<g class="p-mark"><circle cx="${x}" cy="${y}" r="7"/><text x="${x}" y="${y}">${n}</text></g>`;
+const COLS=(x,y,cols,rows,dx,dy)=>Array.from({length:cols*rows},(_,i)=>C(x+(i%cols)*dx,y+Math.floor(i/cols)*dy,1.8)).join("");
+const AXIS=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="p-axis"/>`;
+
+const PLANS={
+  heliopolis:{vb:"0 0 200 140", svg:
+    R(22,28,156,90,"p-court")+R(74,56,52,32)+C(150,104,15,"p-water")+
+    `<circle cx="74" cy="46" r="3.6" fill="none" stroke="var(--line-strong)" stroke-width="1.2" stroke-dasharray="1 2"/>`+
+    C(92,46,3.6,"p-sq")+AXIS(100,20,100,124)+
+    T(100,72,"1")+T(92,46,"2")+T(150,104,"3"),
+    legend:["祭庙基址（虚线为原围墙）","仅存的一根方尖碑（虚线为已失的另一根）","原初之丘的位置，现为一片洼地"]},
+
+  giza:{vb:"0 0 200 140", svg:
+    `<path d="M74 34 L52 92 L96 92 Z" class="p-pyr"/><path d="M132 52 L114 100 L150 100 Z" class="p-pyr"/><path d="M170 74 L158 108 L182 108 Z" class="p-pyr"/>`+
+    R(24,96,26,14,"p-court")+`<ellipse cx="38" cy="118" rx="11" ry="6" class="p-sq" opacity=".55"/>`+
+    AXIS(100,10,100,132)+
+    T(74,60,"1")+T(38,118,"2")+T(150,118,"3"),
+    legend:["胡夫金字塔（四面正对四方位）","狮身人面像，面朝日出","河谷神庙，出入金字塔的必经"]},
+
+  saqqara:{vb:"0 0 200 140", svg:
+    R(20,22,160,100,"p-court")+
+    R(72,44,56,52)+R(78,50,44,40)+R(84,56,32,28)+R(90,62,20,16,"p-hol")+
+    R(38,96,26,18,"p-stair")+R(140,36,26,20,"p-court")+R(30,34,30,20,"p-court")+
+    T(100,70,"1")+T(38,104,"2")+T(152,46,"3"),
+    legend:["阶梯金字塔：六层，逐层缩小","南墓与赫布-塞德节庭院","西侧贵族墓群，不少墓内还留着浮雕"]},
+
+  abydos:{vb:"0 0 200 140", svg:
+    R(36,16,128,110,"p-court")+R(62,24,76,24,"p-court")+R(62,52,76,20,"p-court")+
+    R(62,76,76,18)+R(66,96,68,10)+
+    Array.from({length:7},(_,i)=>R(68+i*9.5,76,7,18,"p-hol")).join("")+
+    R(78,110,44,12,"p-water")+AXIS(100,10,100,132)+
+    T(100,34,"1")+T(100,72,"2")+T(100,116,"3"),
+    legend:["第一、第二庭院","七座神龛，每龛后有一条独立通道","奥西里昂：地下大厅，被认为是奥西里斯的墓"]},
+
+  dendera:{vb:"0 0 200 140", svg:
+    R(56,104,20,16)+R(124,104,20,16)+R(58,84,84,20,"p-court")+R(66,60,68,24)+
+    R(74,44,52,16)+R(82,26,36,18,"p-hol")+R(118,26,10,18,"p-stair")+
+    R(16,58,34,26,"p-court")+R(140,40,18,26,"p-water")+
+    COLS(72,68,6,2,12,12)+AXIS(98,120,98,16)+
+    T(98,70,"1")+T(100,34,"2")+T(30,70,"3")+T(98,112,"4"),
+    legend:["大柱厅：柱头四面都是哈托尔面孔","圣所与通往屋顶的楼梯","玛米西（生子祠），在神庙南侧","塔门，正面宽约 60 米"]},
+
+  karnak:{vb:"0 0 200 140", svg:
+    R(44,108,112,16)+R(48,86,104,22,"p-court")+R(48,78,104,8)+R(52,48,96,30)+
+    COLS(60,56,8,3,12,10)+R(84,30,32,18,"p-hol")+R(146,26,34,22,"p-water")+
+    R(14,44,30,34,"p-court")+C(66,84,2.2,"p-sq")+C(74,84,2.2,"p-sq")+
+    AXIS(100,124,100,16)+
+    T(100,64,"1")+T(163,37,"2")+T(29,61,"3")+T(100,100,"4"),
+    legend:["大柱厅：134 根柱，中央 12 根高 21 米","圣湖，祭司每天在此洁净","图特摩斯三世节庆厅，天花板还留着原色","第一塔门与纳克塔内博的未完成石墙"]},
+
+  luxor:{vb:"0 0 200 140", svg:
+    Array.from({length:7},(_,i)=>C(40+i*18,126,2,"p-dot")).join("")+
+    R(58,102,84,14)+R(66,78,68,24,"p-court")+R(84,64,32,14)+
+    R(62,40,76,24,"p-court")+R(86,24,28,16,"p-hol")+
+    AXIS(100,132,100,16)+
+    T(100,109,"1")+T(100,90,"2")+T(100,52,"3")+T(100,32,"4"),
+    legend:["塔门：原有一对方尖碑，另一根现立巴黎协和广场","拉美西斯二世庭院，柱廊两侧立着他的巨像","阿蒙霍特普三世庭院与廊柱","圣所；狮身羊面像大道从卡纳克一路通到塔门"]},
+
+  valleykings:{vb:"0 0 200 140", svg:
+    R(14,58,14,16,"p-stair")+R(28,60,46,12)+R(74,58,14,14,"p-stair")+
+    R(88,52,34,26)+COLS(94,58,2,2,12,12)+R(122,56,34,18,"p-hol")+
+    R(156,60,26,10,"p-court")+
+    P("M10 20 L60 12 L120 18 L192 10", "p-wall")+
+    T(21,66,"1")+T(81,65,"2")+T(105,65,"3")+T(139,65,"4"),
+    legend:["入口阶梯与下行坡道","竖井：防盗，也象征冥界的入口","柱厅，四周墙面是《门之书》","墓室；天花板是整幅《门之书》或《冥界书》"]},
+
+  hatshepsut:{vb:"0 0 200 140", svg:
+    P("M8 34 L192 22 L192 8 L8 8 Z","p-wall")+
+    R(46,96,108,24,"p-court")+R(92,84,16,12,"p-stair")+
+    R(46,62,108,22)+R(92,50,16,12,"p-stair")+R(46,32,108,18)+R(86,16,28,16,"p-hol")+
+    COLS(52,88,9,1,12,0)+COLS(52,68,9,1,12,0)+
+    AXIS(100,124,100,14)+
+    T(100,108,"1")+T(100,73,"2")+T(100,41,"3")+T(100,24,"4"),
+    legend:["下层柱廊与庭院","中层柱廊：左侧是“神圣诞生”浮雕","上层柱廊与哈托尔小祠","凿进悬崖的圣所；崖顶即底比斯山"]},
+
+  medinet:{vb:"0 0 200 140", svg:
+    R(26,18,148,104,"p-court")+R(84,100,32,20)+R(50,74,100,26,"p-court")+
+    R(56,50,88,24)+R(66,34,68,16)+R(86,20,28,14,"p-hol")+R(38,32,20,26,"p-room")+
+    AXIS(100,126,100,14)+
+    T(100,110,"1")+T(100,87,"2")+T(100,58,"3")+T(100,27,"4"),
+    legend:["“高门”（migdol）：仿叙利亚堡垒的大门，法老从上层窗口现身","第一庭院：塔门上刻着海战与清点战俘","大柱厅与第二庭院","内殿；西侧是拉美西斯三世的行宫"]},
+
+  edfu:{vb:"0 0 200 140", svg:
+    R(48,104,40,18)+R(112,104,40,18)+R(56,76,88,26,"p-court")+
+    R(62,52,76,22)+COLS(70,60,6,2,13,10)+R(74,38,52,12)+R(84,22,32,14,"p-hol")+
+    R(92,26,16,7,"p-naos")+AXIS(100,126,100,14)+
+    T(100,96,"1")+T(100,63,"2")+T(100,29,"3")+T(100,112,"4"),
+    legend:["塔门：两座塔楼高 35 米，外墙是荷鲁斯战赛特","大柱厅，12 根柱，柱头各不同","圣所与花岗岩神龛（naos）","“胜利仪式”浮雕沿外墙一路展开"]},
+
+  komombo:{vb:"0 0 200 140", svg:
+    R(46,104,34,16)+R(120,104,34,16)+R(52,78,42,24,"p-court")+R(106,78,42,24,"p-court")+
+    R(56,56,38,20)+R(106,56,38,20)+R(62,38,26,16,"p-hol")+R(112,38,26,16,"p-hol")+
+    R(20,40,16,50,"p-water")+AXIS(100,126,100,14)+
+    T(72,88,"1")+T(128,88,"2")+T(28,64,"3"),
+    legend:["南半：鳄鱼神索贝克，圣所里养着戴金饰的鳄鱼","北半：鹰神荷鲁斯；两套门殿完全平行","尼罗河水位计（Nilometer），刻着历代洪水高度"]},
+
+  philae:{vb:"0 0 200 140", svg:
+    P("M30 30 C60 18 150 20 176 34 C190 60 186 104 168 118 C130 132 66 130 40 114 C22 92 20 54 30 30 Z","p-court")+
+    R(40,110,120,10,"p-water")+R(64,92,28,14,"p-room")+
+    R(72,68,56,20,"p-court")+R(84,50,32,16)+R(92,30,18,18,"p-hol")+
+    R(140,72,22,22,"p-court")+C(110,100,2,"p-dot")+
+    T(100,118,"1")+T(151,83,"2")+T(101,39,"3")+T(78,79,"4"),
+    legend:["码头与登岛栈桥","图拉真亭：14 根柱，没有屋顶","伊西斯主殿与圣所","玛米西（生子祠）与第一塔门"]},
+
+  aswan:{vb:"0 0 200 140", svg:
+    R(24,26,152,92,"p-court")+
+    R(60,44,26,70,"p-sq")+R(86,44,3,70,"p-wall")+R(56,44,3,70,"p-wall")+
+    `<line x1="66" y1="52" x2="82" y2="52" stroke="var(--ink)" stroke-width=".8" opacity=".35"/>`+
+    `<line x1="66" y1="64" x2="82" y2="64" stroke="var(--ink)" stroke-width=".8" opacity=".35"/>`+
+    `<line x1="66" y1="76" x2="82" y2="76" stroke="var(--ink)" stroke-width=".8" opacity=".35"/>`+
+    P("M118 40 L142 52 L134 78 L150 96","p-wall")+
+    T(73,58,"1")+T(56,58,"2")+T(136,66,"3"),
+    legend:["碑身：长约 42 米，若立起将是全埃及最高","两侧石槽：工匠从三面掏空岩体","贯穿碑身的裂纹——它因此被弃置"]},
+
+  abusimbel:{vb:"0 0 200 140", svg:
+    P("M8 20 L192 14 L192 4 L8 4 Z","p-wall")+
+    R(40,44,120,10)+COLS(48,49,4,1,32,0)+
+    R(66,54,68,10)+R(72,64,56,18)+COLS(78,70,3,1,16,0)+R(86,82,28,16,"p-hol")+
+    R(86,98,28,12)+R(150,60,34,20,"p-court")+R(158,64,18,12,"p-hol")+
+    AXIS(100,130,100,16)+
+    T(100,49,"1")+T(100,59,"2")+T(100,90,"3")+T(167,70,"4"),
+    legend:["立面：四尊 20 米高的拉美西斯二世坐像","60 米长的走廊，两侧是 8 根方柱","圣所：拉、拉美西斯二世、阿蒙、普塔四神","小神庙：献给奈菲尔塔利与哈托尔"]}
+};
+
+function planBlock(t){
+  const p=PLANS[t.id];
+  if(!p) return "";
+  return '<div class="t-plan">'+
+    '<figure class="plan-fig">'+
+      '<svg viewBox="'+p.vb+'" role="img" aria-label="'+t.zh+'平面示意图">'+
+        '<defs><pattern id="hatch-'+t.id+'" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="var(--line-strong)" stroke-width="1"/></pattern></defs>'+
+        p.svg+
+      '</svg>'+
+      '<figcaption>平面示意 · 不按比例</figcaption>'+
+    '</figure>'+
+    '<ol class="plan-legend">'+p.legend.map((s,i)=>'<li><span class="num">'+(i+1)+'</span><span>'+s+'</span></li>').join('')+'</ol>'+
+  '</div>';
+}
+
+/* ---------- list ---------- */
+const listEl = document.getElementById("templeList");
+
+function renderList(){
+  listEl.innerHTML = "";
+  ZONES.forEach(zone=>{
+    const items = TEMPLES.filter(t=>t.zone===zone);
+    if(!items.length) return;
+    const wrap = document.createElement("div");
+    wrap.className = "zone";
+    const shown = items.filter(t=>filter==="all"||t.tag===filter);
+    wrap.innerHTML = '<div class="zone-head"><span class="zh mono">'+zone+'</span><span class="zr mono">'+items.length+' 座</span></div>';
+    items.forEach(t=>{
+      const d = document.createElement("details");
+      d.className = "temple";
+      d.dataset.id = t.id;
+      d.innerHTML =
+        '<summary>'+
+          '<span class="t-name">'+t.zh+'<span class="en">'+t.en+'</span></span>'+
+          '<span class="t-god"><b>'+t.god+'</b>'+t.zone+'</span>'+
+          '<span class="t-plus" aria-hidden="true"></span>'+
+        '</summary>'+
+        '<div class="t-body">'+
+          '<div>'+
+            '<p>'+t.text+'</p>'+
+            '<ul class="t-must" style="margin-top:14px">'+t.must.map(m=>'<li>'+m+'</li>').join('')+'</ul>'+
+          '</div>'+
+          '<div style="display:grid;gap:14px;align-content:start">'+
+            '<dl class="facts"><dt>年代</dt><dd>'+t.era+'</dd><dt>位置</dt><dd>'+t.city+'</dd><dt>主神</dt><dd>'+t.god+'</dd></dl>'+
+            '<p class="tip">'+t.tip+'</p>'+
+            '<button class="visit" type="button" aria-pressed="'+(visited.has(t.id))+'"><span class="tick" aria-hidden="true"></span>'+(visited.has(t.id)?'已到访':'标记为已到访')+'</button>'+
+          '</div>'+
+          planBlock(t)+
+        '</div>';
+      if(filter!=="all" && t.tag!==filter) d.classList.add("is-hidden");
+      const btn = d.querySelector(".visit");
+      btn.addEventListener("click",e=>{
+        e.preventDefault();
+        toggleVisit(t.id, btn, d);
+      });
+      d.addEventListener("toggle",()=>{
+        if(d.open){
+          activeId = t.id;
+          syncMap();
+        }
+      });
+      wrap.appendChild(d);
+    });
+    listEl.appendChild(wrap);
+  });
+  syncMap();
+}
+
+function toggleVisit(id, btn, d){
+  if(visited.has(id)) visited.delete(id); else visited.add(id);
+  saveVisited();
+  const on = visited.has(id);
+  btn.setAttribute("aria-pressed", on ? "true":"false");
+  btn.innerHTML = '<span class="tick" aria-hidden="true"></span>' + (on ? '已到访' : '标记为已到访');
+  if(d) d.dataset.visited = on ? "1":"0";
+  updateProgress();
+  syncMap();
+}
+
+const countEl = document.getElementById("visitCount");
+const totalEl = document.getElementById("visitTotal");
+const fillEl = document.getElementById("progressFill");
+totalEl.textContent = TEMPLES.length;
+
+function updateProgress(){
+  const n = visited.size;
+  countEl.textContent = n;
+  fillEl.style.width = Math.round(n / TEMPLES.length * 100) + "%";
+}
+
+function syncMap(){
+  TEMPLES.forEach(t=>{
+    t.node.classList.toggle("is-visited", visited.has(t.id));
+    t.node.classList.toggle("is-active", activeId === t.id);
+    const hidden = filter !== "all" && t.tag !== filter;
+    t.node.classList.toggle("is-dim", hidden && filter !== "all");
+    t.node.classList.toggle("dim-label", hidden && filter !== "all");
+  });
+}
+
+function gotoTemple(id){
+  const t = TEMPLES.find(x=>x.id===id);
+  if(!t) return;
+  if(filter !== "all" && t.tag !== filter){
+    setFilter("all");
+    return gotoTemple(id);
+  }
+  const d = listEl.querySelector('.temple[data-id="'+id+'"]');
+  if(!d) return;
+  d.open = true;
+  activeId = id;
+  syncMap();
+  const top = d.getBoundingClientRect().top + window.scrollY - 90;
+  window.scrollTo({top, behavior:"smooth"});
+}
+
+/* ---------- filters ---------- */
+document.querySelectorAll("[data-filter]").forEach(chip=>{
+  chip.addEventListener("click",()=>setFilter(chip.dataset.filter));
+});
+function setFilter(f){
+  filter = f;
+  document.querySelectorAll("[data-filter]").forEach(c=>{
+    c.setAttribute("aria-pressed", c.dataset.filter === f ? "true":"false");
+  });
+  renderList();
+  const first = listEl.querySelector(".temple:not(.is-hidden)");
+  if(first && f !== "all"){ first.open = false; }
+}
+
+/* ---------- myth links ---------- */
+document.querySelectorAll("[data-goto]").forEach(b=>{
+  b.addEventListener("click",()=>{
+    gotoTemple(b.dataset.goto);
+  });
+});
+
+/* ---------- glossary ---------- */
+const GLOSSARY=[
+  {g:"site",zh:"塔门",en:"Pylon",ar:"البوابة",say:"al-bawwāba"},
+  {g:"site",zh:"柱厅",en:"Hypostyle hall",ar:"قاعة الأعمدة",say:"qāʿat al-aʿmida"},
+  {g:"site",zh:"圣所（至圣所）",en:"Sanctuary",ar:"قدس الأقداس",say:"quds al-aqdās"},
+  {g:"site",zh:"庭院",en:"Court",ar:"الفناء",say:"al-fināʾ"},
+  {g:"site",zh:"神龛",en:"Naos",ar:"المقصورة",say:"al-maqṣūra"},
+  {g:"site",zh:"玛米西（生子祠）",en:"Mammisi",ar:"الماميزي",say:"al-māmīzī"},
+  {g:"site",zh:"圣湖",en:"Sacred lake",ar:"البحيرة المقدسة",say:"al-buḥayra al-muqaddasa"},
+  {g:"site",zh:"浮雕",en:"Relief",ar:"نقش بارز",say:"naqsh bāriz"},
+  {g:"site",zh:"方尖碑",en:"Obelisk",ar:"المسلة",say:"al-misalla"},
+  {g:"site",zh:"壁画",en:"Wall painting",ar:"رسم جداري",say:"rasm judārī"},
+  {g:"site",zh:"象形文字",en:"Hieroglyphs",ar:"الهيروغليفية",say:"al-hīrūghlīfiyya"},
+  {g:"site",zh:"水位计",en:"Nilometer",ar:"مقياس النيل",say:"miqyās an-nīl"},
+  {g:"site",zh:"石棺",en:"Sarcophagus",ar:"التابوت",say:"at-tābūt"},
+  {g:"site",zh:"木乃伊",en:"Mummy",ar:"المومياء",say:"al-mūmiyāʾ"},
+  {g:"site",zh:"墓室",en:"Burial chamber",ar:"حجرة الدفن",say:"ḥujrat ad-dafn"},
+  {g:"site",zh:"塔楼",en:"Tower",ar:"البرج",say:"al-burj"},
+
+  {g:"god",zh:"拉（太阳神）",en:"Ra",ar:"رع",say:"Raʿ"},
+  {g:"god",zh:"阿蒙",en:"Amun",ar:"آمون",say:"Āmūn"},
+  {g:"god",zh:"阿图姆",en:"Atum",ar:"آتوم",say:"Ātūm"},
+  {g:"god",zh:"伊西斯",en:"Isis",ar:"إيزيس",say:"Īzīs"},
+  {g:"god",zh:"奥西里斯",en:"Osiris",ar:"أوزيريس",say:"Ūzīrīs"},
+  {g:"god",zh:"荷鲁斯",en:"Horus",ar:"حورس",say:"Ḥūrus"},
+  {g:"god",zh:"赛特",en:"Set",ar:"ست",say:"Sit"},
+  {g:"god",zh:"哈托尔",en:"Hathor",ar:"حتحور",say:"Ḥatḥūr"},
+  {g:"god",zh:"阿努比斯",en:"Anubis",ar:"أنوبيس",say:"Anūbīs"},
+  {g:"god",zh:"索贝克（鳄鱼神）",en:"Sobek",ar:"سوبك",say:"Sūbak"},
+  {g:"god",zh:"普塔",en:"Ptah",ar:"بتاح",say:"Bitaḥ"},
+  {g:"god",zh:"克努姆",en:"Khnum",ar:"خنوم",say:"Khnūm"},
+
+  {g:"travel",zh:"多少钱？",en:"How much?",ar:"بكام؟",say:"bi-kām"},
+  {g:"travel",zh:"太贵了",en:"Too expensive",ar:"غالي أوي",say:"ghāli awi"},
+  {g:"travel",zh:"一张票",en:"One ticket",ar:"تذكرة واحدة",say:"tadhkira wāḥda"},
+  {g:"travel",zh:"学生票",en:"Student ticket",ar:"تذكرة طالب",say:"tadhkirat ṭālib"},
+  {g:"travel",zh:"入口",en:"Entrance",ar:"الدخول",say:"ad-dukhūl"},
+  {g:"travel",zh:"出口",en:"Exit",ar:"الخروج",say:"al-khurūj"},
+  {g:"travel",zh:"洗手间",en:"Toilet",ar:"الحمام",say:"al-ḥammām"},
+  {g:"travel",zh:"谢谢",en:"Thank you",ar:"شكراً",say:"shukran"},
+  {g:"travel",zh:"你好",en:"Hello",ar:"أهلاً وسهلاً",say:"ahlan wa sahlan"},
+  {g:"travel",zh:"可以拍照吗？",en:"May I take photos?",ar:"ممكن أصور؟",say:"mumkin aṣawwar"},
+  {g:"travel",zh:"水",en:"Water",ar:"مية",say:"mayya"},
+  {g:"travel",zh:"船",en:"Boat",ar:"مركب",say:"markab"},
+  {g:"travel",zh:"出租车",en:"Taxi",ar:"تاكسي",say:"tāksī"},
+  {g:"travel",zh:"火车站",en:"Train station",ar:"محطة القطار",say:"maḥaṭṭat al-qiṭār"}
+];
+
+const GLOSS_NAMES={all:"全部词条",site:"神庙构造",god:"神祇",travel:"旅行用语"};
+const glossBody=document.getElementById("glossBody");
+const glossCaption=document.getElementById("glossCaption");
+const glossCount=document.getElementById("glossCount");
+const glossSearch=document.getElementById("glossSearch");
+let gtab="all";
+
+function renderGlossary(){
+  const q=(glossSearch.value||"").trim().toLowerCase();
+  const rows=GLOSSARY.filter(r=>{
+    if(gtab!=="all" && r.g!==gtab) return false;
+    if(!q) return true;
+    return (r.zh+" "+r.en+" "+r.say+" "+r.ar).toLowerCase().includes(q);
+  });
+  glossBody.innerHTML=rows.map(r=>
+    '<tr><td class="gloss-zh">'+r.zh+'</td>'+
+    '<td><span class="gloss-en">'+r.en+'</span></td>'+
+    '<td><span class="gloss-ar" lang="ar" dir="rtl">'+r.ar+'</span></td>'+
+    '<td><span class="gloss-say">'+r.say+'</span></td></tr>'
+  ).join("") || '<tr><td colspan="4" style="color:var(--muted);padding:18px 16px">没有匹配的词条，换个写法试试。</td></tr>';
+  glossCaption.textContent=GLOSS_NAMES[gtab];
+  glossCount.textContent=rows.length+" 条";
+}
+document.querySelectorAll("[data-gtab]").forEach(b=>{
+  b.addEventListener("click",()=>{
+    gtab=b.dataset.gtab;
+    document.querySelectorAll("[data-gtab]").forEach(x=>x.setAttribute("aria-pressed", x===b?"true":"false"));
+    renderGlossary();
+  });
+});
+glossSearch.addEventListener("input",renderGlossary);
+renderGlossary();
+
+/* ---------- dates ---------- */
+const CN=["日","一","二","三","四","五","六"];
+const startInput=document.getElementById("startDate");
+function renderDates(){
+  const v=startInput.value;
+  const cells=document.querySelectorAll("[data-day]");
+  if(!v){
+    cells.forEach(c=>{c.textContent="";});
+    return;
+  }
+  const base=new Date(v+"T00:00:00");
+  if(isNaN(base.getTime())) return;
+  cells.forEach(c=>{
+    const d=new Date(base);
+    d.setDate(base.getDate()+Number(c.dataset.day));
+    const md=(d.getMonth()+1)+"月"+d.getDate()+"日";
+    c.innerHTML="<b>"+md+"</b> · 周"+CN[d.getDay()];
+  });
+}
+startInput.addEventListener("change",()=>{
+  renderDates();
+  try{ localStorage.setItem("nile.start", startInput.value); }catch(e){}
+});
+try{
+  const s=localStorage.getItem("nile.start");
+  if(s){ startInput.value=s; }
+}catch(e){}
+renderDates();
+
+/* ---------- init ---------- */
+renderList();
+updateProgress();
+if(TEMPLES.length) { activeId = "karnak"; syncMap(); }
+</script>
+
+
